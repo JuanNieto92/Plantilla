@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_REVISTASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="USR_PaginaSitioWeb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="App" Type="varchar" MaxLength="100" />
+          <Property Name="Controlador" Type="varchar" MaxLength="100" />
+          <Property Name="Funcion" Type="varchar" MaxLength="100" />
+          <Property Name="Icono" Type="varchar" MaxLength="200" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="USR_PermisoSitioWeb">
+          <Key>
+            <PropertyRef Name="IdPaginaSitioWeb" />
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="IdPaginaSitioWeb" Type="int" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="USR_PermisoSitioWeb_SitioWeb">
+          <End Role="USR_PaginaSitioWeb" Type="Self.USR_PaginaSitioWeb" Multiplicity="1" />
+          <End Role="USR_PermisoSitioWeb" Type="Self.USR_PermisoSitioWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USR_PaginaSitioWeb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USR_PermisoSitioWeb">
+              <PropertyRef Name="IdPaginaSitioWeb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_REVISTASModelStoreContainer">
+          <EntitySet Name="USR_PaginaSitioWeb" EntityType="Self.USR_PaginaSitioWeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USR_PermisoSitioWeb" EntityType="Self.USR_PermisoSitioWeb" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="USR_PermisoSitioWeb_SitioWeb" Association="Self.USR_PermisoSitioWeb_SitioWeb">
+            <End Role="USR_PaginaSitioWeb" EntitySet="USR_PaginaSitioWeb" />
+            <End Role="USR_PermisoSitioWeb" EntitySet="USR_PermisoSitioWeb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_REVISTASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="USR_PaginaSitioWeb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="App" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Controlador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Funcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Icono" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USR_PermisoSitioWeb" Relationship="Self.USR_PermisoSitioWeb_SitioWeb" FromRole="USR_PaginaSitioWeb" ToRole="USR_PermisoSitioWeb" />
+        </EntityType>
+        <EntityType Name="USR_PermisoSitioWeb">
+          <Key>
+            <PropertyRef Name="IdPaginaSitioWeb" />
+            <PropertyRef Name="Usuario" />
+          </Key>
+          <Property Name="IdPaginaSitioWeb" Type="Int32" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USR_PaginaSitioWeb" Relationship="Self.USR_PermisoSitioWeb_SitioWeb" FromRole="USR_PermisoSitioWeb" ToRole="USR_PaginaSitioWeb" />
+        </EntityType>
+        <Association Name="USR_PermisoSitioWeb_SitioWeb">
+          <End Role="USR_PaginaSitioWeb" Type="Self.USR_PaginaSitioWeb" Multiplicity="1" />
+          <End Role="USR_PermisoSitioWeb" Type="Self.USR_PermisoSitioWeb" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USR_PaginaSitioWeb">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="USR_PermisoSitioWeb">
+              <PropertyRef Name="IdPaginaSitioWeb" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_REVISTASEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="USR_PaginaSitioWeb" EntityType="Self.USR_PaginaSitioWeb" />
+          <EntitySet Name="USR_PermisoSitioWeb" EntityType="Self.USR_PermisoSitioWeb" />
+          <AssociationSet Name="USR_PermisoSitioWeb_SitioWeb" Association="Self.USR_PermisoSitioWeb_SitioWeb">
+            <End Role="USR_PaginaSitioWeb" EntitySet="USR_PaginaSitioWeb" />
+            <End Role="USR_PermisoSitioWeb" EntitySet="USR_PermisoSitioWeb" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_REVISTASModelStoreContainer" CdmEntityContainer="BD_REVISTASEntities">
+          <EntitySetMapping Name="USR_PaginaSitioWeb">
+            <EntityTypeMapping TypeName="BD_REVISTASModel.USR_PaginaSitioWeb">
+              <MappingFragment StoreEntitySet="USR_PaginaSitioWeb">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="App" ColumnName="App" />
+                <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+                <ScalarProperty Name="Funcion" ColumnName="Funcion" />
+                <ScalarProperty Name="Icono" ColumnName="Icono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USR_PermisoSitioWeb">
+            <EntityTypeMapping TypeName="BD_REVISTASModel.USR_PermisoSitioWeb">
+              <MappingFragment StoreEntitySet="USR_PermisoSitioWeb">
+                <ScalarProperty Name="IdPaginaSitioWeb" ColumnName="IdPaginaSitioWeb" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

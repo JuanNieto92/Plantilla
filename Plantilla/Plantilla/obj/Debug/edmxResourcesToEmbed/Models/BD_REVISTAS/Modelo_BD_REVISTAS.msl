@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BD_REVISTASModelStoreContainer" CdmEntityContainer="BD_REVISTASEntities">
+    <EntitySetMapping Name="USR_PaginaSitioWeb">
+      <EntityTypeMapping TypeName="BD_REVISTASModel.USR_PaginaSitioWeb">
+        <MappingFragment StoreEntitySet="USR_PaginaSitioWeb">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="App" ColumnName="App" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Funcion" ColumnName="Funcion" />
+          <ScalarProperty Name="Icono" ColumnName="Icono" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USR_PermisoSitioWeb">
+      <EntityTypeMapping TypeName="BD_REVISTASModel.USR_PermisoSitioWeb">
+        <MappingFragment StoreEntitySet="USR_PermisoSitioWeb">
+          <ScalarProperty Name="IdPaginaSitioWeb" ColumnName="IdPaginaSitioWeb" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BD_REVISTASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="USR_PaginaSitioWeb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="App" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Controlador" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Funcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Icono" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USR_PermisoSitioWeb" Relationship="Self.USR_PermisoSitioWeb_SitioWeb" FromRole="USR_PaginaSitioWeb" ToRole="USR_PermisoSitioWeb" />
+  </EntityType>
+  <EntityType Name="USR_PermisoSitioWeb">
+    <Key>
+      <PropertyRef Name="IdPaginaSitioWeb" />
+      <PropertyRef Name="Usuario" />
+    </Key>
+    <Property Name="IdPaginaSitioWeb" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="USR_PaginaSitioWeb" Relationship="Self.USR_PermisoSitioWeb_SitioWeb" FromRole="USR_PermisoSitioWeb" ToRole="USR_PaginaSitioWeb" />
+  </EntityType>
+  <Association Name="USR_PermisoSitioWeb_SitioWeb">
+    <End Role="USR_PaginaSitioWeb" Type="Self.USR_PaginaSitioWeb" Multiplicity="1" />
+    <End Role="USR_PermisoSitioWeb" Type="Self.USR_PermisoSitioWeb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USR_PaginaSitioWeb">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="USR_PermisoSitioWeb">
+        <PropertyRef Name="IdPaginaSitioWeb" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BD_REVISTASEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="USR_PaginaSitioWeb" EntityType="Self.USR_PaginaSitioWeb" />
+    <EntitySet Name="USR_PermisoSitioWeb" EntityType="Self.USR_PermisoSitioWeb" />
+    <AssociationSet Name="USR_PermisoSitioWeb_SitioWeb" Association="Self.USR_PermisoSitioWeb_SitioWeb">
+      <End Role="USR_PaginaSitioWeb" EntitySet="USR_PaginaSitioWeb" />
+      <End Role="USR_PermisoSitioWeb" EntitySet="USR_PermisoSitioWeb" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

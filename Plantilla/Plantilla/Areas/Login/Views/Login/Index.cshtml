@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<body>
+    <div class="login-form">
+        <form action="" method="post">
+            <h2 class="text-center">Login</h2>
+            <div class="form-group">
+                <input type="text" name="usuario" class="form-control" placeholder="Usuario" required="required" value="@ViewBag.Usuario" @ViewBag.FocoUser>
+            </div>
+            <div class="form-group">
+                <input type="password" name="pass" class="form-control" placeholder="Password" required="required" @ViewBag.FocoPass>
+            </div>
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.Error
+                </div>
+            }
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">Log in</button>
+            </div>
+            <div>
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Recordarme</label>
+                @*<a href="#" class="pull-right">Forgot Password?</a>*@
+            </div>
+        </form>
+    </div>
+</body>
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Areas/Content/Login.css" rel="stylesheet" />
